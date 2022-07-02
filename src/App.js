@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Header from "./components/Header";
+import Accounts from "./components/Accounts";
+import data from "./assets/transactions.json";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header title="My Bank" userName="Olivier" />
+
+      {data.map((element, index) => {
+        // console.log(element.operations);
+        console.log(index);
+
+        return (
+          <Accounts
+            key={index}
+            operationArray={element.operations}
+            accountName={element.name}
+            accountBalance={element.balance}
+            accountColor={element.color}
+          />
+        );
+      })}
     </div>
   );
-}
+};
 
 export default App;
